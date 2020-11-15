@@ -1,0 +1,2 @@
+export const CUSTOMER_DATA = 'CUSTOMER_DATA';
+
