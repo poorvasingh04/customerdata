@@ -1,7 +1,6 @@
 import axios from 'axios';
 import API_CONSTANTS from '../API_CONSTANTS';
 import API_STAGE from './API_STAGE';
-import AppConstants from '../../AppConstants';
 
 const {
   PENDING,
@@ -25,7 +24,6 @@ const APIService = (dispatch, action, apiURL, configObj) => {
   dispatch(APIResponse(action, PENDING));
   const config = {
     url,
-    timeout: AppConstants.API_TIMEOUT,
     ...configObj
   };
 
