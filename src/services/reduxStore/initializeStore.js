@@ -7,10 +7,11 @@ import Reactotron from 'reactotron-react-native';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
-const composeEnhancers = (__DEV__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const testEnvironmentEnhancer = __DEV__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const composeEnhancers = testEnvironmentEnhancer || compose;
 
 var store;
-if (__DEV__) {
+if (testEnvironmentEnhancer) {
   store = createStore(
     rootReducer,
     composeEnhancers(

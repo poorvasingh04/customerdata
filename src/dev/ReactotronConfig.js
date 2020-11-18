@@ -15,7 +15,9 @@ if (__DEV__) {
     .use(asyncStorage())
     .use(openInEditor())
     .use(trackGlobalErrors())
-    .useReactNative()
+    .useReactNative({
+      errors: false,
+  })
     .connect();
 
   // This will not block normal console.log. This can be use like console.tron.log('tcp')

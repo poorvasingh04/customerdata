@@ -37,8 +37,6 @@ function CustomerList() {
                                 .sort((a,b) => a.user_id-b.user_id)) || [];
 
 
-  console.tron.log("filterdCustomerData=====", filterdCustomerData)
-
   useEffect(() => {
     let cancel = false;
     const runEffect = async () => {      
