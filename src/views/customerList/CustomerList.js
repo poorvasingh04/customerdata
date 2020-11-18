@@ -29,13 +29,14 @@ function CustomerList() {
   const dispatch = useDispatch();
   const customerData = useSelector(state => state.CustomerData.data);
 
-  const filterdCustomerData = (customerData && customerData
-                                .filter(customer => {
-                                  const distance = distanceFromDublinOffice(customer);
-                                  return distance <= AppConstants.MAX_DISTANCE;
-                                })
-                                .sort((a,b) => a.user_id-b.user_id)) || [];
+  const isValidCustomer = (customer) => {
+    const distance = distanceFromDublinOffice(customer);
+    return distance <= AppConstants.MAX_DISTANCE;
+  }
 
+  const filteredCustomerData = (customerData && customerData
+                                .filter(customer => isValidCustomer(customer))
+                                .sort((a,b) => a.user_id-b.user_id)) || [];
 
   useEffect(() => {
     let cancel = false;
@@ -84,7 +85,7 @@ function CustomerList() {
 
   return (
     <FlatList
-      data={filterdCustomerData}
+      data={filteredCustomerData}
       keyExtractor={(_, index) => index.toString()}
       renderItem={renderCustomer}
       ListHeaderComponent={renderHeader}
